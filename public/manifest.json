@@ -1,6 +1,6 @@
 {
-  "name": "Hello Extensions",
-  "description" : "Base Level Extension",
+  "name": "LinkedIn Profile Summary",
+  "description": "A simple extension to capture details of a user profile.",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
@@ -8,28 +8,22 @@
     "default_title": "Open the popup"
   },
   "icons": {
-    "16": "logo192.png",
-    "48": "logo192.png",
-    "128": "logo192.png"
+    "16": "linkedin.png",
+    "48": "linkedin.png",
+    "128": "linkedin.png"
   },
   "background": {
-    "scripts": [
-      "./static/js/background.js"
-    ],
+    "scripts": ["./static/js/background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["*://www.linkedin.com/in/*"],
       "js": ["./static/js/content.js"],
       "all_frames": false,
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
   ],
-  "permissions": [
-    "activeTab"
-  ],
-  "optional_permissions": [
-    "<all_urls>"
-  ]
+  "permissions": ["activeTab", "storage", "scripting"],
+  "optional_permissions": ["<all_urls>"]
 }
